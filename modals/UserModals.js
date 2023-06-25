@@ -11,13 +11,11 @@ const user = new Schema({
     otpforemail: String,
     isotpnumverify: { type: Boolean, default: false },
     isemailverify: { type: Boolean, default: false },
-    access_token: String
-
-    products : [{
-        type : mongoose.Schema.Types.ObjectId,
-        ref : "Products"
+    access_token: String,
+    products:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Products"
     }]
-
 
 })
 

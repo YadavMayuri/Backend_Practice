@@ -136,3 +136,36 @@ export const pagination = async (req, res) => {
         res.send(error)
     }
 }
+
+
+
+export const addToCart = async (req,res) => {
+    try{
+        const { id , pID} = req.body;
+        if(!id) return res.send("id is required")
+        if(!pID) return res.send("product id is required")
+        const user = await Users.findByIdAndUpdate( { _id : id},{$push: {products: pID}}, {new : true} ).populate("products").exec();
+        await user.save();
+        return res.send({"product added to cart":user});
+
+    }catch(error){
+        return res.send(error);
+    }
+}
+
+
+
+
+export const  removeProductFromCart = async (req,res) => {
+    try{
+        const{ id, products } = req.body;
+        if(!products) return res.send("product id is required");
+        const user = await Users.findByIdAndUpdate({ _id : id}, {$pull: {products}},{new:true}).populate("products").exec();
+        await user.save();
+        return res.send({"product removed from cart":user})
+
+
+    }catch(error){
+        return res.send(error);
+    }
+}

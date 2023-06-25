@@ -2,11 +2,10 @@ import mongoose from "mongoose";
 import { Schema } from "mongoose";
 
 const Product = new Schema({
-    pname:String,
-    price:Number,
-    category:String,
-    color:String
-})
+    pname : String,
+    category : String,
+    price : Number,
+    color : String
+});
 
-export default mongoose.model("Products",Product)
-
+export default mongoose.model("Products", Product);
